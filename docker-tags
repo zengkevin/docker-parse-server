@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-json=`curl -s -S "https://registry.hub.docker.com/v2/repositories/yongjhih/parse-server/tags/"`
+json=`curl -s -S "https://registry.hub.docker.com/v2/repositories/jiaguoximi/parse-server/tags/"`
 while [ "$json" ]; do
     echo "$json" | jq '.results[]["name"]'
     next=`echo "$json" | jq -r '.next'`

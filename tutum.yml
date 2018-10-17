@@ -12,7 +12,7 @@ haproxy:
 
 parse-server:
   #build: .
-  image: yongjhih/parse-server
+  image: jiaguoximi/parse-server
   environment:
     DATABASE_URI: $DATABASE_URI
     APP_ID: $APP_ID
@@ -34,7 +34,7 @@ parse-server:
 
 parse-cloud-code:
   #build: cloud/.
-  image: yongjhih/parse-cloud-code
+  image: jiaguoximi/parse-cloud-code
   volumes:
     - /parse/cloud
   command: "ls /parse/cloud"

@@ -1,24 +1,24 @@
 # Docker ❤ Parse
-[![Docker Pulls](https://img.shields.io/docker/pulls/yongjhih/parse-server.svg)](https://hub.docker.com/r/yongjhih/parse-server/)
-[![Docker Stars](https://img.shields.io/docker/stars/yongjhih/parse-server.svg)](https://hub.docker.com/r/yongjhih/parse-server/)
-[![Docker Tag](https://img.shields.io/github/tag/yongjhih/docker-parse-server.svg)](https://hub.docker.com/r/yongjhih/parse-server/tags/)
-[![License](https://img.shields.io/github/license/yongjhih/docker-parse-server.svg)](https://github.com/yongjhih/docker-parse-server/raw/master/LICENSE.txt)
-[![Travis CI](https://img.shields.io/travis/yongjhih/docker-parse-server.svg)](https://travis-ci.org/yongjhih/docker-parse-server)
-[![Gitter Chat](https://img.shields.io/gitter/room/yongjhih/docker-parse-server.svg)](https://gitter.im/yongjhih/docker-parse-server)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jiaguoximi/parse-server.svg)](https://hub.docker.com/r/jiaguoximi/parse-server/)
+[![Docker Stars](https://img.shields.io/docker/stars/jiaguoximi/parse-server.svg)](https://hub.docker.com/r/jiaguoximi/parse-server/)
+[![Docker Tag](https://img.shields.io/github/tag/jiaguoximi/docker-parse-server.svg)](https://hub.docker.com/r/jiaguoximi/parse-server/tags/)
+[![License](https://img.shields.io/github/license/jiaguoximi/docker-parse-server.svg)](https://github.com/zengkevin/docker-parse-server/raw/master/LICENSE.txt)
+[![Travis CI](https://img.shields.io/travis/jiaguoximi/docker-parse-server.svg)](https://travis-ci.org/jiaguoximi/docker-parse-server)
+[![Gitter Chat](https://img.shields.io/gitter/room/jiaguoximi/docker-parse-server.svg)](https://gitter.im/jiaguoximi/docker-parse-server)
 
 ## :cloud: One-Click Deploy
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 [![Deploy to AWS](https://d0.awsstatic.com/product-marketing/Elastic%20Beanstalk/deploy-to-aws.png)](https://console.aws.amazon.com/elasticbeanstalk/home?region=us-west-2#/newApplication?applicationName=ParseServer&solutionStackName=Node.js&tierName=WebServer&sourceBundleUrl=https%3A%2F%2Fs3.amazonaws.com%2Felasticbeanstalk-samples-us-east-1%2Feb-parse-server-sample%2Fparse-server-example.zip)
 [![Deploy to Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.scalingo.com/deploy)
-[![Deploy to Docker Cloud](https://github.com/yongjhih/docker-parse-server/raw/master/art/deploy-to-docker-cloud.png)](https://cloud.docker.com/stack/deploy/?repo=https://github.com/yongjhih/docker-parse-server)
+[![Deploy to Docker Cloud](https://github.com/zengkevin/docker-parse-server/raw/master/art/deploy-to-docker-cloud.png)](https://cloud.docker.com/stack/deploy/?repo=https://github.com/zengkevin/docker-parse-server)
 
 ## :star: Features
 - [x] Parse Server with MongoDB
-- [x] [Parse Cloud Code](https://github.com/yongjhih/parse-cloud-code) via git with auto rebuild
+- [x] [Parse Cloud Code](https://github.com/zengkevin/parse-cloud-code) via git with auto rebuild
 - [x] Parse Push Notification : iOS, Android
 - [x] Parse Live Query
-- [x] [Parse Dashboard](https://github.com/yongjhih/docker-parse-dashboard)
+- [x] [Parse Dashboard](https://github.com/zengkevin/docker-parse-dashboard)
 - [x] Tested Docker Image
 - [x] Deploy with Docker
 - [x] Deploy with Docker Compose
@@ -26,10 +26,10 @@
 - [x] GraphQL support `GRAPHQL_SUPPORT=true`, `GRAPHQL_SCHEMA=YOUR_SCHEMA_URL` (default to `./cloud/graphql/schema.js`)
 
 ## :tv: Overview
-![Parse Server Diagram](https://github.com/yongjhih/docker-parse-server/raw/master/art/parse-server-diagram.png)
+![Parse Server Diagram](https://github.com/zengkevin/docker-parse-server/raw/master/art/parse-server-diagram.png)
 
 ## :see_no_evil: Sneak Preview
-[![Screencast](https://github.com/yongjhih/docker-parse-server/raw/master/art/docker-parse-server.gif)](https://youtu.be/1bYWSPEZL2g)
+[![Screencast](https://github.com/zengkevin/docker-parse-server/raw/master/art/docker-parse-server.gif)](https://youtu.be/1bYWSPEZL2g)
 
 ## :rocket: Deployments
 
@@ -46,13 +46,13 @@ $ docker run -d                                \
              -p 1337:1337                      \
              --link mongo                      \
              --name parse-server               \
-             yongjhih/parse-server
+             jiaguoximi/parse-server
 
 $ docker run -d                                \
              -p 2022:22                        \
              --volumes-from parse-server       \
              --name parse-cloud-code-git       \
-             yongjhih/parse-server:git
+             jiaguoximi/parse-server:git
 
 # Test parse-server
 $ curl -X POST \
@@ -68,7 +68,7 @@ $ docker run -d \
              -p 4040:4040                      \
              --link parse-server               \
              --name parse-dashboard            \
-             yongjhih/parse-dashboard
+             jiaguoximi/parse-dashboard
 
 # The above command will asuume you will later create a ssh 
 # and log into the dashboard remotely in production. 
@@ -84,17 +84,17 @@ $  docker run -d \
         -p 4040:4040                      \
         --link parse-server               \
         --name parse-dashboard            \
-        yongjhih/parse-dashboard
+        jiaguoximi/parse-dashboard
 
 ```
 ### :paperclip: Deploy with Docker Compose
 ```sh
-$ wget https://github.com/yongjhih/docker-parse-server/raw/master/docker-compose.yml
+$ wget https://github.com/zengkevin/docker-parse-server/raw/master/docker-compose.yml
 $ APP_ID=YOUR_APP_ID MASTER_KEY=YOUR_MASTER_KEY PARSE_DASHBOARD_ALLOW_INSECURE_HTTP=1 SERVER_URL=http://localhost:1337/parse docker-compose up -d
 ```
 > #### Note 
 * We use `PARSE_DASHBOARD_ALLOW_INSECURE_HTTP=1` to allow insecure via development environment.
-> * `$ wget https://github.com/yongjhih/docker-parse-server/raw/master/docker-compose.yml -O - | APP_ID=YOUR_APP_ID MASTER_KEY=YOUR_MASTER_KEY docker-compose up -d -f - # not supported for docker-compose container`
+> * `$ wget https://github.com/zengkevin/docker-parse-server/raw/master/docker-compose.yml -O - | APP_ID=YOUR_APP_ID MASTER_KEY=YOUR_MASTER_KEY docker-compose up -d -f - # not supported for docker-compose container`
 
 ### :paperclip: Deploy to Cloud Services
 * [Heroku + Mongolab Development](ADVANCE.md#getting-started-with-heroku--mongolab-development)
@@ -119,7 +119,7 @@ $ APP_ID=YOUR_APP_ID MASTER_KEY=YOUR_MASTER_KEY PARSE_DASHBOARD_ALLOW_INSECURE_H
 
 ## :fire: Server Side Developments
 How to push cloud code to server  
-[![Screencast - git](https://github.com/yongjhih/docker-parse-server/raw/master/art/docker-parse-server-git.gif)](https://youtu.be/9YwWbiRyPUU)
+[![Screencast - git](https://github.com/zengkevin/docker-parse-server/raw/master/art/docker-parse-server-git.gif)](https://youtu.be/9YwWbiRyPUU)
 ```sh
 # This command wil create a SSH keys for you as
 #  ~/.ssh/id_rsa.pub and another private key.
@@ -223,11 +223,11 @@ GRAPHQL_SUPPORT=true APP_ID=YOUR_APP_ID MASTER_KEY=YOUR_MASTER_KEY SERVER_URL=ht
 * https://github.com/ParsePlatform/parse-server
 * http://blog.parse.com/announcements/introducing-parse-server-and-the-database-migration-tool/
 * https://parse.com/docs/server/guide#migrating
-* https://hub.docker.com/r/yongjhih/parse-server/
-* https://github.com/yongjhih/parse-cloud-code
-* https://hub.docker.com/r/yongjhih/parse-cloud-code/
+* https://hub.docker.com/r/jiaguoximi/parse-server/
+* https://github.com/zengkevin/parse-cloud-code
+* https://hub.docker.com/r/jiaguoximi/parse-cloud-code/
 * https://medium.com/cowbear-coder/migration-of-parse-server-with-docker-part1-87034cc29978
-* https://github.com/yongjhih/docker-parse-dashboard
+* https://github.com/zengkevin/docker-parse-dashboard
 * [Docker ❤ Parse](https://medium.com/@katopz/docker-parse-782d27761e24)
 * [DigitalOcean ❤ Parse](https://medium.com/@katopz/digitalocean-parse-e68d8b71e8eb)
 

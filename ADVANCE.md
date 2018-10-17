@@ -6,13 +6,13 @@ $ docker run -d \
              -e MASTER_KEY=${MASTER_KEY}                    \
              -p 1337:1337                                        \
              --name parse-server                                 \
-             yongjhih/parse-server
+             jiaguoximi/parse-server
 ```
 
 or with docker-compose:
 
 ```sh
-$ wget https://github.com/yongjhih/docker-parse-server/raw/master/docker-compose.yml
+$ wget https://github.com/zengkevin/docker-parse-server/raw/master/docker-compose.yml
 $ DATABASE_URI={mongodb://mongodb.intra:27017/dev} APP_ID={appId} MASTER_KEY={masterKey} docker-compose up
 ```
 
@@ -20,20 +20,20 @@ $ DATABASE_URI={mongodb://mongodb.intra:27017/dev} APP_ID={appId} MASTER_KEY={ma
 ### With host folder:
 ```sh
 $ docker run -d \
-             -v ${PARSE_CLOUD:-/home/yongjhih/parse/cloud}:/parse/cloud \
+             -v ${PARSE_CLOUD:-/home/jiaguoximi/parse/cloud}:/parse/cloud \
              -e DATABASE_URI=${PARSE_DATABASE_URI:-mongodb://mongodb.intra:27017/dev} \
              -e APP_ID={appId}         \
              -e MASTER_KEY={masterKey} \
              -p 1337:1337              \
              --link mongo              \
              --name parse-server       \
-             yongjhih/parse-server
+             jiaguoximi/parse-server
 ```
 ### With volume container:
 ```sh
 $ docker create --name parse-cloud-code \
                 -v /parse/cloud         \
-                ${DOCKER_PARSE_CLOUD:-yongjhih/parse-cloud-code} echo ls /parse/cloud
+                ${DOCKER_PARSE_CLOUD:-jiaguoximi/parse-cloud-code} echo ls /parse/cloud
 
 $ docker run -d \
              --volumes-from parse-cloud-code \
@@ -43,7 +43,7 @@ $ docker run -d \
              -p 1337:1337                     \
              --link mongo                     \
              --name parse-server              \
-             yongjhih/parse-server
+             jiaguoximi/parse-server
 ```
 
 ## How to use with custom authentication
@@ -71,7 +71,7 @@ $ docker run -d                                \
              -p 1337:1337                      \
              --link mongo                      \
              --name parse-server               \
-             yongjhih/parse-server:dev
+             jiaguoximi/parse-server:dev
 ```
 
 ## How to specify parse-server version
@@ -83,7 +83,7 @@ $ docker run -d                                \
              -p 1337:1337                      \
              --link mongo                      \
              --name parse-server               \
-             yongjhih/parse-server:2.2.10
+             jiaguoximi/parse-server:2.2.10
 ```
 
 > ref. https://github.com/ParsePlatform/parse-server/releases
@@ -97,10 +97,10 @@ $ docker run -d                                \
              -p 1337:1337                      \
              --link mongo                      \
              --name parse-server               \
-             yongjhih/parse-server:dev
+             jiaguoximi/parse-server:dev
 ```
 ## How to start parse dashboard as standalone
-Start up parse-dashboard: https://github.com/yongjhih/docker-parse-dashboard  
+Start up parse-dashboard: https://github.com/zengkevin/docker-parse-dashboard  
 And, start up other containers without parse-dashboard:
 
 ```sh
@@ -108,17 +108,17 @@ $ APP_ID=YOUR_APP_ID MASTER_KEY=YOUR_MASTER_KEY docker-compose -f docker-compose
 ```
 ## How to setup SSL with letsencrypt
 ```sh
-$ git clone https://github.com/yongjhih/docker-parse-server
+$ git clone https://github.com/zengkevin/docker-parse-server
 $ cd docker-parse-server
 
-$ USER1=yongjhih \
-  USER1_PASSWORD=yongjhih \
+$ USER1=jiaguoximi \
+  USER1_PASSWORD=jiaguoximi \
   PARSE_DASHBOARD_VIRTUAL_HOST=parse.example.com \
   PARSE_DASHBOARD_LETSENCRYPT_HOST=parse.example.com \
-  PARSE_DASHBOARD_LETSENCRYPT_EMAIL=yongjhih@example.com \
+  PARSE_DASHBOARD_LETSENCRYPT_EMAIL=jiaguoximi@example.com \
   PARSE_SERVER_VIRTUAL_HOST=api.example.com \
   PARSE_SERVER_LETSENCRYPT_HOST=api.example.com \
-  PARSE_SERVER_LETSENCRYPT_EMAIL=yongjhih@example.com \
+  PARSE_SERVER_LETSENCRYPT_EMAIL=jiaguoximi@example.com \
   SERVER_URL=https://api.example.com/parse \
   APP_ID=YOUR_APP_ID MASTER_KEY=YOUR_MASTER_KEY docker-compose -f docker-compose-le.yml up
 ```
@@ -155,7 +155,7 @@ Example :
 ```
 
 ## How to integrate parse-cloud-code image on GitHub and DockerHub
-1. Fork https://github.com/yongjhih/parse-cloud-code
+1. Fork https://github.com/zengkevin/parse-cloud-code
 2. Add your cloud code into https://github.com/{username}/parse-cloud-code/tree/master/cloud
 3. Create an automated build image on DockerHub for forked {username}/parse-cloud-code repository
 4. `docker pull {username}/parse-cloud-code`
@@ -163,7 +163,7 @@ Example :
 Without docker-compose:
 
 * Re/create parse-cloud-code volume container: `docker create -v /parse/code --name parse-cloud-code {username}/parse-cloud-code /bin/true`
-* Re/create parse-server container with volume: `docker run -d --volumes-from parse-cloud-code APP_ID={appId} -e MASTER_KEY={masterKey} -p 1337:1337 --link mongo yongjhih/parse-server`
+* Re/create parse-server container with volume: `docker run -d --volumes-from parse-cloud-code APP_ID={appId} -e MASTER_KEY={masterKey} -p 1337:1337 --link mongo jiaguoximi/parse-server`
 
 With docker-compose.yml:
 
@@ -186,7 +186,7 @@ docker-compose up
 * Specify parse-server port on host: `-p {1338}:1337`
 * Specify parse-cloud-code git port on host: `-p {2023}:22`
 * Specify database port on host: `-p {27018}:27017`
-* Specify parse cloud code host folder: `-v {/home/yongjhih/parse/cloud}:/parse/cloud`
+* Specify parse cloud code host folder: `-v {/home/jiaguoximi/parse/cloud}:/parse/cloud`
 * Specify parse cloud code volume container: `--volumes-from {parse-cloud-code}`
 * Specify parse-server prefix: `-e PARSE_MOUNT={/parse}`
 * Specify parse-server log level: `-e LOG_LEVEL={info}`
@@ -242,7 +242,7 @@ Remote parse-cloud-code image:
 # ...
 parse-cloud-code:
   # ...
-  image: yongjhih/parse-cloud-code # Specify your parse-cloud-code image
+  image: jiaguoximi/parse-cloud-code # Specify your parse-cloud-code image
 # ...
 ```
 
@@ -252,16 +252,16 @@ or host folder:
 # ...
 parse-cloud-code:
   # ...
-  image: yongjhih/parse-server
+  image: jiaguoximi/parse-server
   volumes:
-    - /home/yongjhih/parse/cloud:/parse/cloud
+    - /home/jiaguoximi/parse/cloud:/parse/cloud
   # ...
 # ...
 ```
 
 ## How to import ssh-key from github
 ```sh
-$ curl https://github.com/yongjhih.keys | docker exec -i parse-server ssh-add-key
+$ curl https://github.com/zengkevin.keys | docker exec -i parse-server ssh-add-key
 ```
 
 ## MongoDB alternatives
@@ -278,19 +278,19 @@ image: mongo:3.2.6
 Parse.com perfers Percona binrary of mongo-rocks:
 
 ```yml
-image: yongjhih/mongo-rocks:percona-3.0.8
+image: jiaguoximi/mongo-rocks:percona-3.0.8
 ```
 
 MongoDB + RocksDB source build:
 
 ```yml
-image: yongjhih/mongo-rocks:3.2.0
+image: jiaguoximi/mongo-rocks:3.2.0
 ```
 
 Avoid ubuntu-12.04 core dump:
 
 ```yml
-image: yongjhih/mongo-rocks:ubuntu-12.04-3.2.0
+image: jiaguoximi/mongo-rocks:ubuntu-12.04-3.2.0
 ```
 
 # Getting Started With Cloud Services

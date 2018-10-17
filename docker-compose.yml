@@ -116,7 +116,7 @@ services:
   #  command: "--break-mongo"
 
   parse-dashboard:
-    image: yongjhih/parse-dashboard:1.0.18
+    image: parseplatform/parse-dashboard
     #image: yongjhih/parse-dashboard
     links:
       - parse-server

@@ -1,6 +1,6 @@
 parse-server:
   #build: .
-  image: yongjhih/parse-server:dev
+  image: jiaguoximi/parse-server:dev
   ports:
     - "1337:1337"
     - "2022:22"
@@ -25,7 +25,7 @@ parse-server:
     - parse-cloud-code
 parse-cloud-code:
   #build: cloud/.
-  image: yongjhih/parse-cloud-code
+  image: jiaguoximi/parse-cloud-code
   volumes:
     - /parse/cloud
   command: "ls /parse/cloud"
@@ -45,7 +45,7 @@ mongo-data:
   command: "--break-mongo"
 
 parse-dashboard:
-  image: yongjhih/parse-dashboard
+  image: jiaguoximi/parse-dashboard
   links:
     - parse-server
   environment:

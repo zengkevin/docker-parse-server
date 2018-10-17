@@ -1,6 +1,6 @@
 parse-server:
   #build: .
-  image: yongjhih/parse-server
+  image: jiaguoximi/parse-server
   ports:
     - "1337:1337"
   environment:
@@ -78,13 +78,13 @@ parse-server:
 
 parse-cloud-code:
   #build: cloud/.
-  image: yongjhih/parse-cloud-code
+  image: jiaguoximi/parse-cloud-code
   volumes:
     - /parse/cloud
   command: "ls /parse/cloud"
 
 git:
-  image: yongjhih/parse-server:git
+  image: jiaguoximi/parse-server:git
   ports:
     - "2022:22"
   environment:
@@ -95,7 +95,7 @@ git:
     - parse-server
 
 parse-cloud-code:
-  image: yongjhih/parse-cloud-code
+  image: jiaguoximi/parse-cloud-code
   volumes:
     - /parse/cloud
   command: "ls /parse/cloud"
@@ -116,7 +116,7 @@ mongo-data:
   command: "--break-mongo"
 
 parse-dashboard:
-  image: yongjhih/parse-dashboard
+  image: jiaguoximi/parse-dashboard
   links:
     - parse-server
   environment:
