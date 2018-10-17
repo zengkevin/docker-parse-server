@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yongjhih/docker-parse-server"
+    "url": "https://github.com/zengkevin/docker-parse-server"
   },
   "license": "MIT",
   "dependencies": {

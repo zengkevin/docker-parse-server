@@ -7,6 +7,7 @@ var ParseServer = require('parse-server').ParseServer;
 var links = require('docker-links').parseLinks(process.env);
 var fs = require('fs');
 var AzureStorageAdapter = require('parse-server-azure-storage').AzureStorageAdapter;
+var ParseDashboard = require('parse-dashboard');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI
 
@@ -217,7 +218,7 @@ if(liveQuery) {
     };
 }
 
-var databaseOptions = {};
+var databaseOptions = {useNewUrlParser: true};
 if (process.env.DATABASE_TIMEOUT) {
     databaseOptions = {
         socketTimeoutMS: +(process.env.DATABASE_TIMEOUT)
@@ -295,6 +296,29 @@ if (trustProxy) {
 }
 
 app.use(mountPath, api);
+
+var dashboard = new ParseDashboard({
+    "apps": [
+      {
+        "serverURL": process.env.SERVER_URL,
+        "appId": process.env.APP_ID,
+        "masterKey": process.env.MASTER_KEY,
+        "appName": "FitMyLife"
+      }
+    ],
+   "users": [
+      {
+        "user":"fitmylife",
+        "pass":"127Ave"
+      },
+      {
+        "user":"admin",
+        "pass":"127Ave"
+      }
+    ]
+  }, PARSE_DASHBOARD_ALLOW_INSECURE_HTTP);
+// make the Parse Dashboard available at /dashboard
+app.use('/dashboard', dashboard);
 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
